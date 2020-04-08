@@ -5,7 +5,6 @@ before_script:
   - ruby -v
   - which ruby
   - gem install bundler
-  - bundle update --bundler
   - bundle install --jobs $(nproc)  "${FLAGS[@]}"
   - bundle exec rake db:migrate --quiet
   - bundle exec rake db:test:prepare --quiet
@@ -17,8 +16,5 @@ app_is_ready:
 test:
   stage: test
   script:
-    - apt-get update -qy
-    - apt-get install -y nodejs
-    - bundle install --path /cache
     - bundle exec rake db:create RAILS_ENV=test
     - bundle exec rake test
