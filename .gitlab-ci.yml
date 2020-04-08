@@ -5,11 +5,10 @@ before_script:
   - ruby -v
   - which ruby
   - gem install bundler --no-ri --no-rdoc
-  - bundler update --system
   - bundle install --jobs $(nproc)  "${FLAGS[@]}"
   - bundle exec rake db:migrate --quiet
   - bundle exec rake db:test:prepare --quiet
 
-appstart:
+rubocop:
   script:
-    - echo "app is ready"
+    - bundle exec rubocop
