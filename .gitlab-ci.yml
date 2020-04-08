@@ -9,7 +9,3 @@ before_script:
   - bundle install --jobs $(nproc)  "${FLAGS[@]}"
   - bundle exec rake db:migrate --quiet
   - bundle exec rake db:test:prepare --quiet
-
-rubocop:
-  script:
-    - bundle exec rubocop
