@@ -10,9 +10,9 @@ before_script:
   - bundle exec rake db:migrate --quiet
   - bundle exec rake db:test:prepare --quiet
 
-rubocop:
+app_is_ready:
   script:
-    - bundle exec rubocop
+    - echo "Hello from Docker"
 
 test:
   stage: test
