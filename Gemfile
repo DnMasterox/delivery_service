@@ -47,8 +47,8 @@ group :development, :test do
   gem 'rspec', '~> 3.8'
   # Rspec framework
   gem 'brakeman'
+  gem 'rswag'
   gem 'simplecov'
-  gem 'swagger-docs'
 end
 
 group :development do
