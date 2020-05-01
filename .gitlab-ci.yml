@@ -8,6 +8,7 @@ before_script:
   - bundle install --jobs $(nproc)  "${FLAGS[@]}"
 
 security check:
+  stage: .pre
   script:
     - brakeman
 
@@ -16,5 +17,6 @@ code style check:
     - rubocop
 
 tests:
+  stage: .post
   script:
     - rspec
