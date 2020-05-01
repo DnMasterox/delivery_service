@@ -28,7 +28,7 @@ class CouriersController < ApplicationController
 
     respond_to do |format|
       if @courier.save
-        format.html { redirect_to @courier, notice: 'Courier was successfully created.' }
+        format.html { redirect_to @courier, notice: 'Courier was created.' }
         format.json { render :show, status: :created, location: @courier }
       else
         format.html { render :new }
@@ -42,11 +42,13 @@ class CouriersController < ApplicationController
   def update
     respond_to do |format|
       if @courier.update(courier_params)
-        format.html { redirect_to @courier, notice: 'Courier was successfully updated.' }
+        format.html { redirect_to @courier, notice: 'Courier was updated.' }
         format.json { render :show, status: :ok, location: @courier }
       else
         format.html { render :edit }
-        format.json { render json: @courier.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @courier.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -56,7 +58,7 @@ class CouriersController < ApplicationController
   def destroy
     @courier.destroy
     respond_to do |format|
-      format.html { redirect_to couriers_url, notice: 'Courier was successfully fired.' }
+      format.html { redirect_to couriers_url, notice: 'Courier was fired.' }
       format.json { head :no_content }
     end
   end

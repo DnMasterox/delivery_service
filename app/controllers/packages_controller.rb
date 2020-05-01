@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class PackagesController
 class PackagesController < ApplicationController
   before_action :set_courier
   before_action :set_package, except: [:create]
@@ -14,7 +15,8 @@ class PackagesController < ApplicationController
     if @package.destroy
       flash[:success] = "Package #{@package.tracking_number} was deleted."
     else
-      flash[:error] = "Package #{@package.tracking_number} could not be deleted."
+      flash[:error] = "Package #{@package.tracking_number}
+could not be deleted."
     end
     redirect_to @courier
   end
