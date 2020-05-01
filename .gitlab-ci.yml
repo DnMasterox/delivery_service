@@ -18,7 +18,5 @@ code style check:
     - rubocop
 
 tests:
-  stage: test
   script:
-    - bundle exec rake db:create RAILS_ENV=test
-    - bundle exec rake test
+    - rspec
