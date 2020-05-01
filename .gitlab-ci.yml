@@ -1,4 +1,4 @@
-image: "ruby:2.7.0"
+image: "ruby:2.6.5"
 
 before_script:
   - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev nodejs
@@ -10,17 +10,15 @@ before_script:
   - bundle exec rake db:test:prepare --quiet
 
 security check:
-  stage: Security check
   script:
     - brakeman
 
 code style check:
-  stage: Code style check
   script:
     - rubocop
 
 tests:
-  stage: Tests
+  stage: test
   script:
     - bundle exec rake db:create RAILS_ENV=test
     - bundle exec rake test
