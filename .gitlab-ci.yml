@@ -9,12 +9,18 @@ before_script:
   - bundle exec rake db:migrate --quiet
   - bundle exec rake db:test:prepare --quiet
 
-app_is_ready:
+security check:
+  stage: Security check
   script:
-    - echo "Hello from Docker"
+    - brakeman
 
-test:
-  stage: test
+code style check:
+  stage: Code style check
+  script:
+    - rubocop
+
+tests:
+  stage: Tests
   script:
     - bundle exec rake db:create RAILS_ENV=test
     - bundle exec rake test
