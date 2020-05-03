@@ -13,11 +13,10 @@ security check:
     - brakeman
 
 code style check:
-  stage: test
   script:
     - rubocop
 
 tests:
-  stage: test
+  stage: .post
   script:
     - rspec
