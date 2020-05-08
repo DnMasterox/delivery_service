@@ -1,22 +1,33 @@
 image: "ruby:2.6.5"
 
+services:
+  - postgres:12.2
+
+variables:
+  DB_HOST: postgres
+
 before_script:
-  - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev nodejs
+  - apt-get update -qq && apt-get install -y -qq nodejs
   - ruby -v
   - which ruby
   - gem install bundler
   - bundle install --jobs $(nproc)  "${FLAGS[@]}"
+  - cp config/database.yml.ci config/database.yml
+  - bundle exec rails db:create RAILS_ENV=test
+  - bundle exec rails db:schema:load RAILS_ENV=test
+  - bundle exec webpack
 
 security check:
   stage: .pre
   script:
-    - brakeman
+    - bundle exec brakeman
 
 code style check:
+  stage: lint
   script:
-    - rubocop
+    - bundle exec rubocop
 
 tests:
-  stage: .post
+  stage: test
   script:
-    - rspec
+    - bundle exec rspec
