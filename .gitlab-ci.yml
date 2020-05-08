@@ -1,4 +1,4 @@
-image: "ruby:2.7.0"
+image: "ruby:2.6.5"
 
 before_script:
   - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev nodejs
@@ -6,15 +6,17 @@ before_script:
   - which ruby
   - gem install bundler
   - bundle install --jobs $(nproc)  "${FLAGS[@]}"
-  - bundle exec rake db:migrate --quiet
-  - bundle exec rake db:test:prepare --quiet
 
-app_is_ready:
+security check:
+  stage: .pre
   script:
-    - echo "Hello from Docker"
+    - brakeman
 
-test:
-  stage: test
+code style check:
   script:
-    - bundle exec rake db:create RAILS_ENV=test
-    - bundle exec rake test
+    - rubocop
+
+tests:
+  stage: .post
+  script:
+    - rspec

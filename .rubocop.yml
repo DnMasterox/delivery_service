@@ -1,0 +1,12 @@
+# Common configuration.
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - '.git/**/*'
+    - 'db/**/*'
+    - 'bin/*'
+    - 'config/*'
+    - 'config/**/*'
+    - 'app/admin/*'
+    - 'lib/*'
+    - '**/*_spec.rb'
