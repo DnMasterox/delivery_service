@@ -12,10 +12,8 @@ before_script:
   - which ruby
   - gem install bundler
   - bundle install --jobs $(nproc)  "${FLAGS[@]}"
-  - cp config/database.yml.ci config/database.yml
   - bundle exec rails db:create RAILS_ENV=test
   - bundle exec rails db:schema:load RAILS_ENV=test
-  - bundle exec webpack
 
 security check:
   stage: .pre
@@ -27,6 +25,6 @@ code style check:
     - bundle exec rubocop
 
 tests:
-  stage: test
+  stage: .post
   script:
     - bundle exec rspec
