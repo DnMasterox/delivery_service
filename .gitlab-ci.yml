@@ -23,7 +23,6 @@ security check:
     - bundle exec brakeman
 
 code style check:
-  stage: lint
   script:
     - bundle exec rubocop
 
