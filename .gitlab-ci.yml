@@ -18,16 +18,22 @@ before_script:
   - bundle exec rails db:create RAILS_ENV=test
   - bundle exec rails db:schema:load RAILS_ENV=test
 
+stages:
+  - security_check
+  - code_style_check
+  - tests
+
 security check:
-  stage: .pre
+  stage: security_check
   script:
     - bundle exec brakeman
 
 code style check:
+  stage: code_style_check
   script:
     - bundle exec rubocop
 
 tests:
-  stage: .post
+  stage: tests
   script:
     - bundle exec rspec
