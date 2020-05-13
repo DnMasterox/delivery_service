@@ -44,11 +44,11 @@ group :development, :test do
   # console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Rspec framework
-  gem 'rspec', '~> 3.8'
+  gem 'rspec-rails', '~> 4.0.0'
   # Rspec framework
   gem 'brakeman'
   gem 'rswag'
-  gem 'simplecov'
+  gem 'simplecov', require: false
 end
 
 group :development do
