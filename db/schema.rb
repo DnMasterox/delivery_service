@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_182628) do
+ActiveRecord::Schema.define(version: 2020_05_09_171446) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
+  enable_extension "plpgsql"
 
   create_table "couriers", force: :cascade do |t|
     t.string "name"
@@ -19,14 +23,13 @@ ActiveRecord::Schema.define(version: 2020_02_28_182628) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "packages", force: :cascade do |t|
+  create_table "packages", primary_key: "uuid", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "tracking_number"
-    t.boolean "delivery_status"
-    t.integer "courier_id"
+    t.integer "delivery_status", default: 0
+    t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "completed_at"
-    t.index ["courier_id"], name: "index_packages_on_courier_id"
+    t.datetime "estimated_delivery_date"
   end
 
 end
