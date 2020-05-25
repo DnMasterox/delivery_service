@@ -75,3 +75,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Rubocop
 gem 'rubocop', require: false
+
+gem 'activeadmin'
+gem 'devise'
