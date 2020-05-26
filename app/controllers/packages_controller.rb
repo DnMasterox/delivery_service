@@ -22,8 +22,8 @@ could not be deleted."
   end
 
   def complete
-    @package.update_attribute(:completed_at, Time.now)
-    @package.update_attribute(:delivery_status, TRUE)
+    @package.update(:completed_at, Time.zone.now)
+    @package.update(:delivery_status, TRUE)
     redirect_to @courier, notice: "Delivery status 'Completed'"
   end
 

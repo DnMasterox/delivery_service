@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :courier do
     sequence(:email) { |n| "test#{n}@test.test" }

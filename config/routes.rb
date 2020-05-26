@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  root to: 'admin/dashboard#index'
+
+  devise_for :delivery_managers, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :couriers   do
     resources :packages do
@@ -10,5 +12,4 @@ Rails.application.routes.draw do
       end
     end
   end
-  root 'couriers#index'
 end
