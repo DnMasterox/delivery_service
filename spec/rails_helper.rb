@@ -3,8 +3,10 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
 SimpleCov.start 'rails'
-require 'spec_helper'
 require 'support/factory_bot'
+require 'pundit/rspec'
+require 'pundit/matchers'
+require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
