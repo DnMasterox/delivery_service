@@ -2,6 +2,9 @@
 
 # class Package
 class Package < ApplicationRecord
+  has_many :package_assignments, dependent: :destroy
+  has_many :couriers, through: :package_assignments
+
   before_create :set_tracking_number
   enum delivery_status: {
     new: 0,
