@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_185630) do
+ActiveRecord::Schema.define(version: 2020_05_21_074309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_185630) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "couriers", force: :cascade do |t|
+  create_table "couriers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.datetime "created_at", null: false
@@ -60,7 +60,16 @@ ActiveRecord::Schema.define(version: 2020_05_13_185630) do
     t.index ["reset_password_token"], name: "index_delivery_managers_on_reset_password_token", unique: true
   end
 
-  create_table "packages", primary_key: "uuid", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "package_assignments", force: :cascade do |t|
+    t.uuid "package_id", null: false
+    t.uuid "courier_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["courier_id"], name: "index_package_assignments_on_courier_id"
+    t.index ["package_id"], name: "index_package_assignments_on_package_id"
+  end
+
+  create_table "packages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "tracking_number"
     t.integer "delivery_status", default: 0
     t.datetime "completed_at"
@@ -69,4 +78,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_185630) do
     t.datetime "estimated_delivery_date"
   end
 
+  add_foreign_key "package_assignments", "couriers"
+  add_foreign_key "package_assignments", "packages"
 end
