@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe CourierPolicy do
-  let(:courier) { build(:courier) }
-  subject { CourierPolicy.new(user, courier) }
+RSpec.describe PackageAssignmentPolicy do
+  let(:package_assignment) { build(:package_assignment) }
+  subject { PackageAssignmentPolicy.new(user, package_assignment) }
   context 'being a visitor' do
-    let(:user) { build(:delivery_manager, enabled: false) }
-    it {
-      is_expected.to_not permit_actions(%i[index create show new update
-                                           edit destroy])
-    }
-    let(:user) { build(:courier) }
+    let(:user) { nil }
     it {
       is_expected.to_not permit_actions(%i[index create show new update
                                            edit destroy])

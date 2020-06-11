@@ -22,6 +22,7 @@ stages:
   - security_check
   - code_style_check
   - tests
+  - deploy
 
 security check:
   stage: security_check
@@ -37,3 +38,8 @@ tests:
   stage: tests
   script:
     - bundle exec rspec
+deploy:
+  stage: deploy
+  script:
+    - gem install dpl
+    - dpl --provider=heroku --app=intense-shore-07962 --api-key=$HEROKU_API_KEY

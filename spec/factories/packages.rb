@@ -3,5 +3,11 @@
 FactoryBot.define do
   factory :package do
     estimated_delivery_date { Time.zone.today }
+    trait :processing do
+      delivery_status { 'processing' }
+    end
+    trait :assigned do
+      delivery_status { 'assigned' }
+    end
   end
 end
