@@ -49,6 +49,7 @@ group :development, :test do
   # Rspec framework
   gem 'brakeman'
   gem 'factory_bot_rails'
+  gem 'pry'
   gem 'rswag'
   gem 'simplecov'
 end

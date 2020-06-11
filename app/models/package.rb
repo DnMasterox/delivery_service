@@ -10,8 +10,13 @@ class Package < ApplicationRecord
     new: 0,
     processing: 1,
     delivered: 2,
-    cancelled: 3
+    cancelled: 3,
+    assigned: 4
   }, _suffix: true
+
+  def to_s
+    tracking_number
+  end
 
   private
 
@@ -22,9 +27,5 @@ class Package < ApplicationRecord
     else
       self.tracking_number = tracking_number
     end
-  end
-
-  def completed?
-    completed_at.present?
   end
 end

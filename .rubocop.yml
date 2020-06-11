@@ -24,3 +24,4 @@ Metrics/BlockLength:
     - Rakefile
     - spec/**/*.rb
     - config/routes.rb
+    - app/admin/**/*

@@ -30,4 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  active_admin:
+    package_assignments:
+      messages:
+        error: 'Only packages in processing status can be assigned'
+        success: 'Package successfully assigned'

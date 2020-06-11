@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe PackagePolicy, type: :policy do
+RSpec.describe PackagePolicy do
   let(:package) { build(:package) }
   subject { CourierPolicy.new(user, package) }
   context 'being a visitor' do

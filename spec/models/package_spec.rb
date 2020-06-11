@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Package, type: :model do
+RSpec.describe Package do
   let(:package) { FactoryBot.create(:package) }
 
   it 'has enum of delivery statuses' do
@@ -9,7 +9,8 @@ RSpec.describe Package, type: :model do
         { new: 0,
           processing: 1,
           delivered: 2,
-          cancelled: 3 }
+          cancelled: 3,
+          assigned: 4 }
       )
       .with_suffix
   end
