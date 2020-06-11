@@ -20,4 +20,14 @@ ActiveAdmin.register Package do
     end
     f.actions
   end
+  controller do
+    def destroy
+      if Package::Canceller.call(params[:id])
+        flash[:success] = I18n.t('active_admin.resources.package.messages.success')
+      else
+        flash[:error] = I18n.t('active_admin.resources.package.messages.error')
+      end
+      redirect_back fallback_location: active_admin_root
+    end
+  end
 end
