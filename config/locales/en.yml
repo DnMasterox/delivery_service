@@ -31,7 +31,13 @@
 
 en:
   active_admin:
-    package_assignments:
-      messages:
-        error: 'Only packages in processing status can be assigned'
-        success: 'Package successfully assigned'
+    resources:
+      package: # Registered resource
+        delete_model: 'Cancel Package' # delete action item
+        messages:
+          success: 'Package cancelled'
+          error: "Only packages in 'processing' or 'new' status could be cancelled"
+      package_assignments:
+        messages:
+          success: 'Package successfully assigned'
+          error: 'Only packages in processing status can be assigned'
