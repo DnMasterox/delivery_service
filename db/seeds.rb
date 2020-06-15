@@ -5,13 +5,14 @@
 # alongside the database with db:setup).
 #
 # Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' },
-# { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Courier.create!(name: 'Test',
+                email: 'test@test.test',
+                password: 'password',
+                password_confirmation: 'password')
 AdminUser.create!(email: 'admin@example.com',
                   password: 'password',
                   password_confirmation: 'password') if Rails.env.development?
 DeliveryManager.create!(email: 'deliverymanager@example.com',
                   password: 'password',
                   password_confirmation: 'password')
+

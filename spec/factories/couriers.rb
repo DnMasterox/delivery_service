@@ -2,7 +2,11 @@
 
 FactoryBot.define do
   factory :courier do
-    sequence(:email) { |n| "test#{n}@test.test" }
-    sequence(:name) { |n| "tester#{n}" }
+    email { Faker::Internet.email }
+    password { Faker::Internet.password }
+    trait :real do
+      email { 'test@test.test' }
+      password { 'password' }
+    end
   end
 end
