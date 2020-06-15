@@ -49,8 +49,10 @@ group :development, :test do
   # Rspec framework
   gem 'brakeman'
   gem 'factory_bot_rails'
-  gem 'pry'
-  gem 'rswag'
+  # Rswag
+  gem 'rswag-specs'
+  # Simplecow
+  gem 'pry-rails'
   gem 'simplecov'
 end
 
@@ -68,6 +70,8 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'database_cleaner'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'pundit-matchers', '~> 1.6.0'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
@@ -81,3 +85,9 @@ gem 'rubocop-rails', require: false
 
 gem 'activeadmin'
 gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
+gem 'rack-cors'
+# Rswag
+gem 'rswag-api'
+gem 'rswag-ui'
