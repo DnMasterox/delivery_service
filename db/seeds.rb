@@ -9,10 +9,8 @@ Courier.create!(name: 'Test',
                 email: 'test@test.test',
                 password: 'password',
                 password_confirmation: 'password')
-AdminUser.create!(email: 'admin@example.com',
-                  password: 'password',
-                  password_confirmation: 'password') if Rails.env.development?
 DeliveryManager.create!(email: 'deliverymanager@example.com',
-                  password: 'password',
-                  password_confirmation: 'password')
+                        password: 'password',
+                        password_confirmation: 'password')
+Package.create!
 
