@@ -2,7 +2,7 @@
 
 RSpec.describe 'Couriers', type: :request do
   let(:courier) { FactoryBot.create(:courier, :real) }
-  path '/api/v1/auth/sign_in/' do
+  path '/auth/sign_in/' do
     post 'courier sign_in' do
       tags 'couriers'
       consumes 'application/json'

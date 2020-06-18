@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'Courier',
                                   at: 'auth'
       resources :couriers
+      resources :packages
     end
   end
   root to: 'admin/dashboard#index'

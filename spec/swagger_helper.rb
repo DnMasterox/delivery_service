@@ -15,6 +15,7 @@ RSpec.configure do |config|
   config.swagger_docs = {
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
+      basePath: '/api/v1',
       info: {
         title: 'API V1',
         version: 'v1'
