@@ -54,4 +54,44 @@ RSpec.describe 'Packages', type: :request do
       end
     end
   end
+  path '/packages' do
+    get 'courier retrieves a list of Assigned packages' do
+      tags 'packages'
+      produces 'application/json'
+      parameter name: 'access-token', in: :header, type: :string
+      parameter name: 'token-type', in: :header, type: :string
+      parameter name: 'client', in: :header, type: :string
+      parameter name: 'expiry', in: :header, type: :string
+      parameter name: 'uid', in: :header, type: :string
+
+      response '200', 'Assigned packages found' do
+        schema type: :object,
+               properties: {
+                 packages: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :string },
+                       estimated_delivery_date: { type: :string, nullable: true },
+                       tracking_number: { type: :string }
+                     }, required: %w[id
+                                     estimated_delivery_date
+                                     tracking_number]
+                   }
+                 }
+               }
+        let!(:package) { FactoryBot.create(:package, :assigned) }
+        run_test!
+      end
+      response '401', 'Error: unauthorized' do
+        let(:'access-token') { nil }
+        let(:'token-type') { nil }
+        let(:client) { nil }
+        let(:expiry) { nil }
+        let(:uid) { nil }
+        run_test!
+      end
+    end
+  end
 end

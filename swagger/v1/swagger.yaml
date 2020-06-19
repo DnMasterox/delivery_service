@@ -120,6 +120,59 @@ paths:
         '404':
           description: 'Error: package not found'
           content: {}
+  "/packages":
+    get:
+      summary: courier retrieves a list of Assigned packages
+      tags:
+      - packages
+      parameters:
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Assigned packages found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  packages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        estimated_delivery_date:
+                          type: string
+                          nullable: true
+                        tracking_number:
+                          type: string
+                      required:
+                      - id
+                      - estimated_delivery_date
+                      - tracking_number
+        '401':
+          description: 'Error: unauthorized'
+          content: {}
 servers:
-- url: http://localhost:3000
-- url: https://intense-shore-07962.herokuapp.com/
+- url: http://localhost:3000/api/v1
+- url: https://intense-shore-07962.herokuapp.com/api/v1
