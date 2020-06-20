@@ -94,4 +94,63 @@ RSpec.describe 'Packages', type: :request do
       end
     end
   end
+  path '/packages/{id}' do
+    put 'courier pick up a package' do
+      tags 'packages'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: 'access-token', in: :header, type: :string
+      parameter name: 'token-type', in: :header, type: :string
+      parameter name: 'client', in: :header, type: :string
+      parameter name: 'expiry', in: :header, type: :string
+      parameter name: 'uid', in: :header, type: :string
+      response '200', 'package status successfully changed' do
+        schema type: :object,
+               properties: {
+                 tracking_number: { type: :string },
+                 delivery_status: { type: :string },
+                 estimated_delivery_date: { type: :string, nullable: true }
+               },
+               required: %w[tracking_number
+                            delivery_status
+                            estimated_delivery_date]
+        let!(:id) { FactoryBot.create(:package, :assigned).id }
+        run_test!
+      end
+      response '401', 'Error: unauthorized' do
+        let(:id) { 'invalid' }
+        let(:'access-token') { nil }
+        let(:'token-type') { nil }
+        let(:client) { nil }
+        let(:expiry) { nil }
+        let(:uid) { nil }
+        run_test!
+      end
+      response '404', 'Error: package not found' do
+        let(:id) { 'invalid' }
+        parameter name: 'access-token', in: :header, type: :string
+        parameter name: 'token-type', in: :header, type: :string
+        parameter name: 'client', in: :header, type: :string
+        parameter name: 'expiry', in: :header, type: :string
+        parameter name: 'uid', in: :header, type: :string
+        run_test!
+      end
+      # This needs to be updated and fixed or removed
+      #
+      # response '422', 'Validation failed' do
+      #   schema type: :object,
+      #          properties: {
+      #              message: { type: :string }
+      #          }
+      #   let!(:id) { FactoryBot.create(:package).id }
+      #   let!(:package) { FactoryBot.create(:package) }
+      #   parameter name: 'access-token', in: :header, type: :string
+      #   parameter name: 'token-type', in: :header, type: :string
+      #   parameter name: 'client', in: :header, type: :string
+      #   parameter name: 'expiry', in: :header, type: :string
+      #   parameter name: 'uid', in: :header, type: :string
+      #   run_test!
+      # end
+    end
+  end
 end

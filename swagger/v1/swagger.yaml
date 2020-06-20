@@ -120,6 +120,81 @@ paths:
         '404':
           description: 'Error: package not found'
           content: {}
+    put:
+      summary: courier pick up a package
+      tags:
+      - packages
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: package status successfully changed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tracking_number:
+                    type: string
+                  delivery_status:
+                    type: string
+                  estimated_delivery_date:
+                    type: string
+                    nullable: true
+                required:
+                - tracking_number
+                - delivery_status
+                - estimated_delivery_date
+        '401':
+          description: 'Error: unauthorized'
+          content: {}
+        '404':
+          description: 'Error: package not found'
+          content: {}
   "/packages":
     get:
       summary: courier retrieves a list of Assigned packages
