@@ -9,4 +9,8 @@ class ApiController < ActionController::API
   def not_found
     render file: Rails.root.join('/public/404'), layout: false, status: :not_found
   end
+
+  def validation_failed(entity)
+    render json: { errors: entity.errors }, status: :unprocessable_entity
+  end
 end

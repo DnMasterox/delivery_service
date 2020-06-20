@@ -11,7 +11,8 @@ class Package < ApplicationRecord
     processing: 1,
     delivered: 2,
     cancelled: 3,
-    assigned: 4
+    assigned: 4,
+    pickuped: 5
   }, _suffix: true
 
   def to_s

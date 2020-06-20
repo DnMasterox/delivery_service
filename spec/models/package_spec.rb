@@ -10,7 +10,8 @@ RSpec.describe Package do
           processing: 1,
           delivered: 2,
           cancelled: 3,
-          assigned: 4 }
+          assigned: 4,
+          pickuped: 5 }
       )
       .with_suffix
   end
