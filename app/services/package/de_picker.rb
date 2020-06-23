@@ -2,13 +2,13 @@
 
 # app/services/package/picker.rb
 class Package
-  class Picker
+  class DePicker
     def initialize(id)
       @id = id
     end
 
     def call
-      package&.pickuped_delivery_status!
+      package&.processing_delivery_status!
     end
 
     def package
@@ -16,7 +16,7 @@ class Package
     end
 
     def success?
-      @package&.pickuped_delivery_status?
+      @package&.processing_delivery_status?
     end
   end
 end
