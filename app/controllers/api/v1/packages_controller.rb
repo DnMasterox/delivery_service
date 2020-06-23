@@ -31,6 +31,16 @@ module Api
           validation_failed(@package) unless service.success?
         end
       end
+
+      def destroy
+        service = Package::DePicker.new(params[:id])
+        if !service.package
+          not_found
+        else
+          service.call
+          service.success? ? head(:ok) : validation_failed(service.package)
+        end
+      end
     end
   end
 end

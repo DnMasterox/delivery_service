@@ -195,6 +195,66 @@ paths:
         '404':
           description: 'Error: package not found'
           content: {}
+    delete:
+      summary: courier cancel a package
+      tags:
+      - packages
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: package successfully deleted
+          content: {}
+        '401':
+          description: 'Error: unauthorized'
+          content: {}
+        '404':
+          description: 'Error: package not found'
+          content: {}
   "/packages":
     get:
       summary: courier retrieves a list of Assigned packages

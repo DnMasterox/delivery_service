@@ -9,5 +9,8 @@ FactoryBot.define do
     trait :assigned do
       delivery_status { 'assigned' }
     end
+    trait :delivered do
+      delivery_status { 'delivered' }
+    end
   end
 end

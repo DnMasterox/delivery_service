@@ -21,7 +21,14 @@ RSpec.describe Package::Canceller do
       let(:package) { FactoryBot.create(:package, :assigned) }
       it do
         subject.call(package[:id])
-        expect(package.assigned_delivery_status?).to be true
+        expect(package.reload).to be_assigned_delivery_status
+      end
+    end
+    context 'when package status delivered' do
+      let(:package) { FactoryBot.create(:package, :delivered) }
+      it do
+        subject.call(package[:id])
+        expect(package.reload).to be_delivered_delivery_status
       end
     end
   end

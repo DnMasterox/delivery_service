@@ -153,4 +153,38 @@ RSpec.describe 'Packages', type: :request do
       # end
     end
   end
+  path '/packages/{id}' do
+    delete 'courier cancel a package' do
+      tags 'packages'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      response '200', 'package successfully deleted' do
+        let!(:id) { FactoryBot.create(:package, :assigned).id }
+        parameter name: 'access-token', in: :header, type: :string
+        parameter name: 'token-type', in: :header, type: :string
+        parameter name: 'client', in: :header, type: :string
+        parameter name: 'expiry', in: :header, type: :string
+        parameter name: 'uid', in: :header, type: :string
+        run_test!
+      end
+      response '401', 'Error: unauthorized' do
+        let(:id) { 'invalid' }
+        let(:'access-token') { nil }
+        let(:'token-type') { nil }
+        let(:client) { nil }
+        let(:expiry) { nil }
+        let(:uid) { nil }
+        run_test!
+      end
+      response '404', 'Error: package not found' do
+        let(:id) { 'invalid' }
+        parameter name: 'access-token', in: :header, type: :string
+        parameter name: 'token-type', in: :header, type: :string
+        parameter name: 'client', in: :header, type: :string
+        parameter name: 'expiry', in: :header, type: :string
+        parameter name: 'uid', in: :header, type: :string
+        run_test!
+      end
+    end
+  end
 end
