@@ -82,12 +82,17 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Rubocop
 gem 'rubocop-rails', require: false
-
+# Active admin
 gem 'activeadmin'
+gem 'activeadmin_addons'
+# Devise
 gem 'devise'
 gem 'devise_token_auth'
-gem 'omniauth'
-gem 'rack-cors'
+# Paperclip
+gem 'paperclip', '~> 6.0.0'
 # Rswag
 gem 'rswag-api'
 gem 'rswag-ui'
+
+gem 'omniauth'
+gem 'rack-cors'

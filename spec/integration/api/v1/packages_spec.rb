@@ -54,6 +54,7 @@ RSpec.describe 'Packages', type: :request do
       end
     end
   end
+
   path '/packages' do
     get 'courier retrieves a list of Assigned packages' do
       tags 'packages'
@@ -94,16 +95,19 @@ RSpec.describe 'Packages', type: :request do
       end
     end
   end
+
   path '/packages/{id}' do
     put 'courier pick up a package' do
       tags 'packages'
       produces 'application/json'
+
       parameter name: :id, in: :path, type: :string
       parameter name: 'access-token', in: :header, type: :string
       parameter name: 'token-type', in: :header, type: :string
       parameter name: 'client', in: :header, type: :string
       parameter name: 'expiry', in: :header, type: :string
       parameter name: 'uid', in: :header, type: :string
+
       response '200', 'package status successfully changed' do
         schema type: :object,
                properties: {
@@ -117,6 +121,7 @@ RSpec.describe 'Packages', type: :request do
         let!(:id) { FactoryBot.create(:package, :assigned).id }
         run_test!
       end
+
       response '401', 'Error: unauthorized' do
         let(:id) { 'invalid' }
         let(:'access-token') { nil }
@@ -126,6 +131,7 @@ RSpec.describe 'Packages', type: :request do
         let(:uid) { nil }
         run_test!
       end
+
       response '404', 'Error: package not found' do
         let(:id) { 'invalid' }
         parameter name: 'access-token', in: :header, type: :string
@@ -135,6 +141,7 @@ RSpec.describe 'Packages', type: :request do
         parameter name: 'uid', in: :header, type: :string
         run_test!
       end
+
       # This needs to be updated and fixed or removed
       #
       # response '422', 'Validation failed' do
@@ -153,11 +160,14 @@ RSpec.describe 'Packages', type: :request do
       # end
     end
   end
+
   path '/packages/{id}' do
     delete 'courier cancel a package' do
       tags 'packages'
       produces 'application/json'
+
       parameter name: :id, in: :path, type: :string
+
       response '200', 'package successfully deleted' do
         let!(:id) { FactoryBot.create(:package, :assigned).id }
         parameter name: 'access-token', in: :header, type: :string
@@ -167,6 +177,7 @@ RSpec.describe 'Packages', type: :request do
         parameter name: 'uid', in: :header, type: :string
         run_test!
       end
+
       response '401', 'Error: unauthorized' do
         let(:id) { 'invalid' }
         let(:'access-token') { nil }
@@ -176,6 +187,7 @@ RSpec.describe 'Packages', type: :request do
         let(:uid) { nil }
         run_test!
       end
+
       response '404', 'Error: package not found' do
         let(:id) { 'invalid' }
         parameter name: 'access-token', in: :header, type: :string
