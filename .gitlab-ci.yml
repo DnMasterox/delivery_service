@@ -38,3 +38,9 @@ tests:
   stage: tests
   script:
     - bundle exec rspec
+
+deploy:
+  stage: deploy
+  script:
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_API --api-key=$HEROKU_API_KEY

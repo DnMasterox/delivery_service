@@ -7,7 +7,7 @@ ActiveAdmin.register Package do
   index do
     selectable_column
     column :tracking_number
-    column :delivery_status
+    tag_column :delivery_status
     column :estimated_delivery_date
     column :couriers
     actions
@@ -15,7 +15,7 @@ ActiveAdmin.register Package do
 
   form do |f|
     f.inputs do
-      f.input :estimated_delivery_date
+      f.input :estimated_delivery_date, as: :date_time_picker
       f.input :delivery_status, as: :select, include_blank: false
     end
     f.actions

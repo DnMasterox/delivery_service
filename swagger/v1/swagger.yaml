@@ -44,6 +44,110 @@ paths:
               required:
               - email
               - password
+  "/couriers/{id}":
+    put:
+      summary: courier uploads lisence
+      tags:
+      - couriers
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: lisence successfully uploaded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                    nullable: true
+                  email:
+                    type: string
+                  avatar:
+                    type: string
+                required:
+                - id
+                - name
+                - email
+                - avatar
+        '404':
+          description: 'Error: unauthorized'
+          content: {}
+        '422':
+          description: Second license upload unavailable
+          content: {}
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: file
   "/packages/{id}":
     get:
       summary: courier retrieves a package
