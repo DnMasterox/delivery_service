@@ -5,6 +5,48 @@ info:
   title: API V1
   version: v1
 paths:
+  "/confirmations/{id}":
+    get:
+      summary: anyone confirms the delivery of package
+      tags:
+      - packages
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: package delivered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tracking_number:
+                    type: string
+                  delivery_status:
+                    type: string
+                  estimated_delivery_date:
+                    type: string
+                    nullable: true
+                  confirmation_token:
+                    type: string
+                  confirmation_expiration:
+                    type: string
+                required:
+                - tracking_number
+                - delivery_status
+                - estimated_delivery_date
+                - confirmation_token
+                - confirmation_expiration
+        '404':
+          description: 'Error: package not found'
+          content: {}
+        '422':
+          description: Validation failed
+          content: {}
   "/auth/sign_in/":
     post:
       summary: courier sign_in
@@ -411,6 +453,101 @@ paths:
                       - tracking_number
         '401':
           description: 'Error: unauthorized'
+          content: {}
+  "/packages/{id}/generate_confirmation":
+    get:
+      summary: courier retrieves a package
+      tags:
+      - packages
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: token-type
+        in: header
+        schema:
+          type: string
+      - name: client
+        in: header
+        schema:
+          type: string
+      - name: expiry
+        in: header
+        schema:
+          type: string
+      - name: uid
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: package found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  confirmation_token:
+                    type: string
+                  confirmation_expiration:
+                    type: string
+                required:
+                - confirmation_token
+                - confirmation_expiration
+        '401':
+          description: 'Error: unauthorized'
+          content: {}
+        '404':
+          description: 'Error: package not found'
+          content: {}
+        '422':
+          description: 'Error: package not found'
           content: {}
 servers:
 - url: http://localhost:3000/api/v1

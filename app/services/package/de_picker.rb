@@ -16,7 +16,7 @@ class Package
     end
 
     def success?
-      @package&.processing_delivery_status?
+      package&.processing_delivery_status?
     end
   end
 end

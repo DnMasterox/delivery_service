@@ -12,5 +12,15 @@ FactoryBot.define do
     trait :delivered do
       delivery_status { 'delivered' }
     end
+    trait :valid_confirmation_token do
+      delivery_status { 'assigned' }
+      confirmation_expiration { Time.current + 1.minute }
+      confirmation_token { 1 }
+    end
+    trait :invalid_confirmation_token do
+      delivery_status { 'assigned' }
+      confirmation_expiration { Time.current - 1.minute }
+      confirmation_token { 2 }
+    end
   end
 end

@@ -16,7 +16,7 @@ class Package
     end
 
     def success?
-      @package&.pickuped_delivery_status?
+      package&.pickuped_delivery_status?
     end
   end
 end

@@ -17,10 +17,10 @@ class DeviseTokenAuthCreateCouriers < ActiveRecord::Migration[5.2]
       t.datetime :remember_created_at
 
       ## Confirmable
-      t.string   :confirmation_token
-      t.datetime :confirmed_at
-      t.datetime :confirmation_sent_at
-      t.string   :unconfirmed_email # Only if using reconfirmable
+      # t.string   :confirmation_token
+      # t.datetime :confirmed_at
+      # t.datetime :confirmation_sent_at
+      # t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
       # t.integer  :failed_attempts, :default => 0, :null => false # Only if lock strategy is :failed_attempts
@@ -39,7 +39,6 @@ class DeviseTokenAuthCreateCouriers < ActiveRecord::Migration[5.2]
 
     add_index :couriers, [:uid, :provider],     unique: true
     add_index :couriers, :reset_password_token, unique: true
-    add_index :couriers, :confirmation_token,   unique: true
     # add_index :couriers, :unlock_token,       unique: true
   end
 end
