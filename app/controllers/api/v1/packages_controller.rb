@@ -20,9 +20,21 @@ module Api
         end
       end
 
-      # PATCH/PUT /packages/1.json
+      # PUT /packages/1.json
       def update
         service = Package::Picker.new(params[:id])
+        if !service.package
+          not_found
+        else
+          @package = service.package
+          service.call
+          validation_failed(@package) unless service.success?
+        end
+      end
+
+      # PATCH /packages/1/confirmation_token.json
+      def generate_confirmation
+        service = Package::TokenGenerator.new(params[:id])
         if !service.package
           not_found
         else

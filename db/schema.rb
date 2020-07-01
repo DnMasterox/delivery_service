@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_14_073640) do
+ActiveRecord::Schema.define(version: 2020_06_26_061451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -50,10 +50,6 @@ ActiveRecord::Schema.define(version: 2020_06_14_073640) do
     t.datetime "reset_password_sent_at"
     t.boolean "allow_password_change", default: false
     t.datetime "remember_created_at"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
     t.string "nickname"
     t.string "image"
     t.json "tokens"
@@ -64,7 +60,6 @@ ActiveRecord::Schema.define(version: 2020_06_14_073640) do
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean "validity", default: false, null: false
-    t.index ["confirmation_token"], name: "index_couriers_on_confirmation_token", unique: true
     t.index ["reset_password_token"], name: "index_couriers_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_couriers_on_uid_and_provider", unique: true
   end
@@ -98,6 +93,8 @@ ActiveRecord::Schema.define(version: 2020_06_14_073640) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "estimated_delivery_date"
+    t.string "confirmation_token"
+    t.datetime "confirmation_expiration"
   end
 
   add_foreign_key "package_assignments", "couriers"

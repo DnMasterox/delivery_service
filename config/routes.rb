@@ -8,7 +8,12 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'Courier',
                                   at: 'auth'
       resources :couriers
-      resources :packages
+      resources :packages do
+        member do
+          get 'generate_confirmation'
+        end
+      end
+      resources :confirmations, only: %i[show]
     end
   end
   root to: 'admin/dashboard#index'
