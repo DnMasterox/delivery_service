@@ -44,9 +44,7 @@ jobs:
           yarn
       - name: Set up database
         run: |
-          bundle exec rails db:create
-          bundle exec rails db:schema:load
-        env:
-          DB_PASSWORD: postgres
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:schema:load RAILS_ENV=test
       - name: security_check
         run: bundle exec brakeman
