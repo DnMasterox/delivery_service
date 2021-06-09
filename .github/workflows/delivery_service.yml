@@ -1,6 +1,16 @@
-name: Social Network
+name: Delivery Service
 on: [push]
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v1
+
+      - name: Rubocop checks
+          uses: luizfonseca/github-actions-rubocop@1.5.6
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test:
     runs-on: ubuntu-latest
     services:
@@ -33,7 +43,9 @@ jobs:
           bundle install --jobs 4 --retry 3
           yarn
       - name: Set up database
-        run: bundle exec rails db:prepare
+        run: |
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:schema:load RAILS_ENV=test
         env:
           DB_PASSWORD: postgres
       - name: security_check
