@@ -29,6 +29,7 @@ jobs:
           bundler-cache: true
       - name: Install dependencies
         run: |
+          gem install bundler --no-document
           bundle install --jobs 4 --retry 3
           yarn
       - name: Set up database
