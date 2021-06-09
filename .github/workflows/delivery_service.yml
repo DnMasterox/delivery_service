@@ -38,8 +38,3 @@ jobs:
           DB_PASSWORD: postgres
       - name: security_check
         run: bundle exec brakeman
-      - name: Run tests
-          run: bundle exec rspec
-          env:
-            RAILS_ENV: test
-            DB_PASSWORD: postgres
