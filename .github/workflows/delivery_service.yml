@@ -38,12 +38,6 @@ jobs:
           DB_PASSWORD: postgres
       - name: security_check
         run: bundle exec brakeman
-
-      - name: code_style_check
-          uses: luizfonseca/github-actions-rubocop@1.5.6
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Run tests
           run: bundle exec rspec
           env:
