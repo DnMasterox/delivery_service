@@ -47,7 +47,7 @@ group :development, :test do
   # Rspec framework
   gem 'rspec-rails', '~> 4.0.0'
   # Rspec framework
-  gem 'brakeman'
+  gem 'brakeman', '~> 4.8.2'
   gem 'factory_bot_rails'
   # Rswag
   gem 'rswag-specs'
