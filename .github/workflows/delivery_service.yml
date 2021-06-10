@@ -37,9 +37,9 @@ jobs:
           yarn
 
       - name: Brakeman
-      uses: devmasx/brakeman-linter-action@v1.0.0
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        uses: devmasx/brakeman-linter-action@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Rubocop checks
         uses: luizfonseca/github-actions-rubocop@1.5.6
