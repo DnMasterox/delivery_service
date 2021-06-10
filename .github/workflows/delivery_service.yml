@@ -1,7 +1,7 @@
 name: Delivery Service
 on: [push]
 jobs:
-  build:
+  code_style_check:
     runs-on: ubuntu-latest
     steps:
 
@@ -47,7 +47,7 @@ jobs:
           bundle exec rails db:create
         env:
           RAILS_ENV: "test"
-          DATABASE_URL: "postgres://postgres@localhost:5432/test_database_name"
+          DATABASE_URL: "postgres://postgres@localhost:5432/db_test"
           RUBYOPT: "-W:no-deprecated -W:no-experimental" # Suppress Rails 6 deprecation warnings for ruby 2.7
       - name: security_check
         run: bundle exec brakeman
