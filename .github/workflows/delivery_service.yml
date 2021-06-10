@@ -48,7 +48,6 @@ jobs:
         env:
           RAILS_ENV: "test"
           DATABASE_URL: "postgres://postgres@localhost:5432/db_test"
-          RUBYOPT: "-W:no-deprecated -W:no-experimental"
       - name: security_check
         run: bundle exec brakeman
       - name: Test with RSpec
