@@ -1,7 +1,6 @@
 name: Delivery Service
 on:
   push:
-    branches: [ feature/github-actions ]
     pull_request:
       branches: [ develop ]
 jobs:
