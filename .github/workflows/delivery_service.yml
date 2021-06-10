@@ -67,9 +67,10 @@ jobs:
     needs: check_and_test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - run: git config user.email "${{secrets.HEROKU_EMAIL}}" && git config user.name "nickshumak" && git add -A && git commit -m "Updated code"
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_API}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
+          justlogin: true
