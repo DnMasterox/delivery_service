@@ -46,9 +46,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Rubocop checks
-        uses: luizfonseca/github-actions-rubocop@1.5.6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bundle exec rubocop --fail-level E
 
       - name: Set up database
         run: |
@@ -67,9 +65,9 @@ jobs:
     needs: check_and_test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_API}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
+          justlogin: true
