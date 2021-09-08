@@ -47,7 +47,7 @@ jobs:
 
       - name: Rubocop checks
         run: bundle exec rubocop --fail-level E
-        
+
       - name: Set up database
         run: |
           bundle exec rails db:create
