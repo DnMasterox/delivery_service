@@ -41,9 +41,7 @@ jobs:
           yarn
 
       - name: Brakeman
-        uses: devmasx/brakeman-linter-action@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: bundle exec brakeman
 
       - name: Rubocop checks
         run: bundle exec rubocop --fail-level E
