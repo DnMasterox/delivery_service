@@ -9,12 +9,20 @@ ActiveAdmin.register Courier do
     column :email
     column :packages
     column 'Valid', :validity
-    image_column 'Document', :avatar, style: :thumb
+    # column "Image" do |courier|
+    #   image_tag(courier.avatar,width:100,height:80)
+    # end
+    column do
+      input :avatar, as: :file
+    end
+    #image_column 'Document', :avatar, style: :thumb
     actions
   end
   show do
     attributes_table do
-      image_row 'Document', :avatar
+      row "Image" do |courier|
+        image_tag(courier.avatar,width:100,height:80)
+      end
       table_for courier do
         toggle_bool_column 'Valid', :validity
       end
@@ -34,6 +42,9 @@ ActiveAdmin.register Courier do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.inputs "avatar" do
+        f.input :avatar, as: :file
+      end
     end
     f.actions
   end

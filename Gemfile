@@ -88,8 +88,6 @@ gem 'activeadmin_addons'
 # Devise
 gem 'devise'
 gem 'devise_token_auth'
-# Paperclip
-gem 'paperclip', '~> 6.0.0'
 # Rswag
 gem 'rswag-api'
 gem 'rswag-ui'
