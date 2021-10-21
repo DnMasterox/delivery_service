@@ -8,7 +8,9 @@ ActiveAdmin.register Courier do
     column :name
     column :email
     column :packages
-    image_tag url_for(:avatar), size: "200x200" if avatar.attached?
+    column :avatar do |ad|
+      image_tag url_for(ad.avatar), size: "200x200" if ad.avatar.attached?
+    end
     column 'Valid', :validity
     actions
   end
