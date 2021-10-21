@@ -172,7 +172,7 @@ paths:
                     nullable: true
                   email:
                     type: string
-                  avatar:
+                  images:
                     type: string
                 required:
                 - id

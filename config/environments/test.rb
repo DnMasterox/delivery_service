@@ -49,4 +49,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
+
+  # Use inline job processing to make things happen immediately
+  config.active_job.queue_adapter = :inline
 end
