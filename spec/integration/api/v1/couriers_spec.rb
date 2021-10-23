@@ -55,12 +55,12 @@ RSpec.describe 'Couriers', type: :request do
                  id: { type: :string },
                  name: { type: :string, nullable: true },
                  email: { type: :string },
-                 image: { type: :string }
+                 avatar: { type: :string }
                },
                required: %w[id
                             name
                             email
-                            image]
+                            avatar]
         let!(:id) { courier.id }
         let!(:image) do
           fixture_file_upload(Rails
