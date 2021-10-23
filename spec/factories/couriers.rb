@@ -8,10 +8,10 @@ FactoryBot.define do
       email { 'test@test.test' }
       password { 'password' }
     end
-    trait :images do
+    trait :image do
       email { 'test1@test.test' }
       password { 'password' }
-      images { File.new(Rails.root.join('spec/support/fixtures/avatar.jpg')) }
+      image { File.new(Rails.root.join('spec/support/fixtures/avatar.jpg')) }
     end
   end
 end

@@ -9,7 +9,7 @@ class Courier < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
   has_many :package_assignments, dependent: :destroy
   has_many :packages, through: :package_assignments
-  has_many_attached :images
+  has_one_attached :image
 
   def self.find_for_authentication(tainted_conditions)
     find_first_by_auth_conditions(tainted_conditions, validity: true)
