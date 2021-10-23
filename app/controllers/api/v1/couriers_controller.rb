@@ -17,7 +17,7 @@ module Api
         @courier = Courier.find_by(id: params[:id])
         if !@courier
           not_found
-        elsif @courier.image.blank?
+        elsif !@courier.image.attached?
           @courier.update(courier_params)
         else
           validation_failed(@courier)
