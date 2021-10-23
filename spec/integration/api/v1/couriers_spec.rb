@@ -2,7 +2,7 @@
 
 RSpec.describe 'Couriers', type: :request do
   let(:courier) { FactoryBot.create(:courier, :real) }
-  let(:courier_with_avatar) { FactoryBot.create(:courier, :avatar) }
+  let(:courier_with_image) { FactoryBot.create(:courier, :image) }
   let(:auth_headers) { courier.create_new_auth_token }
   let(:'access-token') { auth_headers['access-token'] }
   let(:'token-type') { auth_headers['token-type'] }
@@ -15,12 +15,12 @@ RSpec.describe 'Couriers', type: :request do
       consumes 'application/json'
 
       parameter name: :params, in: :body, schema: {
-        type: :object,
-        properties: {
-          email: { type: :string },
-          password: { type: :string }
-        },
-        required: %w[email password]
+          type: :object,
+          properties: {
+              email: { type: :string },
+              password: { type: :string }
+          },
+          required: %w[email password]
       }
       produces 'application/json'
 
@@ -47,24 +47,24 @@ RSpec.describe 'Couriers', type: :request do
       produces 'application/json'
 
       parameter name: :id, in: :path, type: :string
-      parameter name: :avatar, in: :formData, type: :file
+      parameter name: :image, in: :formData, type: :file
 
       response '200', 'lisence successfully uploaded' do
         schema type: :object,
                properties: {
-                 id: { type: :string },
-                 name: { type: :string, nullable: true },
-                 email: { type: :string },
-                 avatar: { type: :string }
+                   id: { type: :string },
+                   name: { type: :string, nullable: true },
+                   email: { type: :string },
+                   image: { type: :string }
                },
                required: %w[id
                             name
                             email
-                            avatar]
+                            image]
         let!(:id) { courier.id }
-        let!(:avatar) do
+        let!(:image) do
           fixture_file_upload(Rails
-                                                .root.join('spec/support/fixtures/avatar.jpg'), 'image/jpg')
+                                  .root.join('spec/support/fixtures/avatar.jpg'), 'image/jpg')
         end
         parameter name: 'access-token', in: :header, type: :string
         parameter name: 'token-type', in: :header, type: :string
@@ -76,9 +76,9 @@ RSpec.describe 'Couriers', type: :request do
 
       response '404', 'Error: unauthorized' do
         let(:id) { 'invalid' }
-        let!(:avatar) do
+        let!(:image) do
           fixture_file_upload(Rails
-                                                .root.join('spec/support/fixtures/avatar.jpg'), 'image/jpg')
+                                  .root.join('spec/support/fixtures/avatar.jpg'), 'image/jpg')
         end
         parameter name: 'access-token', in: :header, type: :string
         parameter name: 'token-type', in: :header, type: :string
@@ -89,10 +89,10 @@ RSpec.describe 'Couriers', type: :request do
       end
 
       response '422', 'Second license upload unavailable' do
-        let(:id) { courier_with_avatar.id }
-        let!(:avatar) do
+        let(:id) { courier_with_image.id }
+        let!(:image) do
           fixture_file_upload(Rails
-                                                .root.join('spec/support/fixtures/avatar.jpg'), 'image/jpg')
+                                  .root.join('spec/support/fixtures/avatar.jpg'), 'image/jpg')
         end
         parameter name: 'access-token', in: :header, type: :string
         parameter name: 'token-type', in: :header, type: :string

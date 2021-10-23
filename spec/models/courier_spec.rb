@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 RSpec.describe Courier do
-  let(:courier) { FactoryBot.create(:courier, :avatar) }
+  let(:courier) { FactoryBot.create(:courier, :image) }
   context 'courier is valid' do
-    it { expect(courier).to have_attached_file(:avatar) }
     it {
-      expect(courier).to validate_attachment_content_type(:avatar)
-        .allowing('image/png', 'image/jpg', 'image/gif')
+      expect(courier.image.attached?).to be true
     }
   end
   context 'courier is non-valid' do
     let(:courier) { FactoryBot.create(:courier, :real) }
-    it { expect(courier).not_to validate_attachment_presence(:avatar) }
+    it { expect(courier.image.attached?).to be false }
   end
 end

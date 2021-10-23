@@ -7,7 +7,6 @@ require 'support/factory_bot'
 require 'pundit/rspec'
 require 'pundit/matchers'
 require 'spec_helper'
-require 'paperclip/matchers'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
@@ -70,7 +69,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.infer_spec_type_from_file_location!
-  config.include Paperclip::Shoulda::Matchers
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

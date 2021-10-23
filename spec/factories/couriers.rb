@@ -8,10 +8,13 @@ FactoryBot.define do
       email { 'test@test.test' }
       password { 'password' }
     end
-    trait :avatar do
+    trait :image do
       email { 'test1@test.test' }
       password { 'password' }
-      avatar { File.new(Rails.root.join('spec/support/fixtures/avatar.jpg')) }
+      after(:build) do |courier|
+        courier.image.attach(io: File.open(Rails.root.join('spec/support/fixtures/avatar.jpg')), filename: 'avatar.jpg', content_type: 'image/jpeg')
+      end
+      #image { File.new(Rails.root.join('spec/support/fixtures/avatar.jpg')) }
     end
   end
 end

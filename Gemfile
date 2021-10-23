@@ -47,7 +47,7 @@ group :development, :test do
   # Rspec framework
   gem 'rspec-rails', '~> 4.0.0'
   # Rspec framework
-  gem 'brakeman', '~> 4.8.2'
+  gem 'brakeman', '~> 5.1.1'
   gem 'factory_bot_rails'
   # Rswag
   gem 'rswag-specs'
@@ -88,8 +88,6 @@ gem 'activeadmin_addons'
 # Devise
 gem 'devise'
 gem 'devise_token_auth'
-# Paperclip
-gem 'paperclip', '~> 6.0.0'
 # Rswag
 gem 'rswag-api'
 gem 'rswag-ui'

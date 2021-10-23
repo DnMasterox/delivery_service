@@ -1,20 +1,24 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Courier do
-  permit_params :name, :email, :password, :password_confirmation, :validity, packages: []
+  permit_params :name, :email, :password, :password_confirmation, :validity, :image, packages: []
 
   index do
     selectable_column
     column :name
     column :email
     column :packages
+    column :image do |c|
+      image_tag url_for(c.image), size: "100x100" if c.image.attached?
+    end
     column 'Valid', :validity
-    image_column 'Document', :avatar, style: :thumb
     actions
   end
   show do
     attributes_table do
-      image_row 'Document', :avatar
+      row :image do |c|
+        image_tag url_for(c.image), size: "200x200" if c.image.attached?
+      end
       table_for courier do
         toggle_bool_column 'Valid', :validity
       end
@@ -28,12 +32,13 @@ ActiveAdmin.register Courier do
     end
   end
 
-  form do |f|
+  form html: { multipart: true } do |f|
     f.inputs do
       f.input :name
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :image, as: :file
     end
     f.actions
   end

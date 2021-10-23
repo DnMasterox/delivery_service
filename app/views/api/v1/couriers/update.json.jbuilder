@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.extract! @courier, :id, :name, :email, :avatar
+json.extract! @courier, :id, :name, :email, :image

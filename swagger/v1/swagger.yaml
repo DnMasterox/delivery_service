@@ -172,13 +172,13 @@ paths:
                     nullable: true
                   email:
                     type: string
-                  avatar:
+                  image:
                     type: string
                 required:
                 - id
                 - name
                 - email
-                - avatar
+                - image
         '404':
           description: 'Error: unauthorized'
           content: {}
